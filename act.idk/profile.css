@@ -1,0 +1,100 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif;
+        }
+
+    
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; 
+        }
+
+       
+        .profile-card {
+            width: 320px; 
+            background-color: #ffffff;
+            padding: 24px; 
+            border-radius: 16px; 
+            text-align: center;
+            
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 
+                        0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0; 
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+      
+        .profile-card .profile-pic-container {
+            margin-bottom: 20px;
+        }
+
+        .profile-card .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; 
+            object-fit: cover;
+           
+            box-shadow: 0 0 0 4px #e0e0e0, 0 0 0 6px #007bff;
+        }
+
+       
+        .profile-card h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .profile-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+       
+        .profile-card .follow-btn {
+          
+            display: inline-block; 
+            text-decoration: none; 
+            
+            
+            background-color: #007bff; 
+            color: white;
+            border-color: #333;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        
+        .profile-card .follow-btn:hover {
+            background-color: #0056b3; 
+            transform: translateY(-1px);
+        }
+
+        .profile-card .follow-btn:active {
+            transform: translateY(0);
+        }
+        
+        
+        @media (max-width: 400px) {
+            .profile-card {
+                width: 90%;
+                margin: 20px;
+                padding: 20px;
+            }
+        }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - ELM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../main/main.css">
+    <link rel="stylesheet" href="account.css"> 
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="logo"><a href="../main/main.html">ELM</a></div>
+        <div class="header-right-group">
+            <nav class="main-nav">
+                <a href="../shop-cart/shop.html">Shop</a>
+                <a href="../collection/collection.html">Collections</a>
+            </nav>
+            <div class="user-actions">
+                <a href="account.html">Account</a> 
+                <a href="../shop-cart/cart.html" id="cart-link">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-main">
+        <section class="account-dashboard">
+            <h1 class="page-title">My Account</h1>
+            
+            <div class="account-layout-grid">
+                
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="account.html">Dashboard</a></li>
+                        <li><a href="account-orders.html" class="active">Order History</a></li>
+                        <li><a href="account-profile.html">Profile Details</a></li>
+                        <li><a href="account-addresses.html">Address Book</a></li>
+                        <li><a href="#" id="logout-button" class="logout-link">Sign Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="account-content">
+                    <h2 class="content-title">Recent Orders</h2>
+                    
+                    <div id="order-history-list">
+                        <div class="order-item">
+                            <div class="order-summary">
+                                <span>Order #ELM10019</span>
+                                <span>Date: Nov 20, 2025</span>
+                                <span>Total: $6,605.00</span>
+                                <span>Status: **Shipped**</span>
+                            </div>
+                            <button class="cta-button tertiary-cta">View Details</button>
+                        </div>
+
+                        <div class="order-item">
+                            <div class="order-summary">
+                                <span>Order #ELM10018</span>
+                                <span>Date: Oct 15, 2025</span>
+                                <span>Total: $995.00</span>
+                                <span>Status: **Delivered**</span>
+                            </div>
+                            <button class="cta-button tertiary-cta">View Details</button>
+                        </div>
+
+                        </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>&copy; 2025 ELM. All rights reserved.</p>
+    </footer>
+
+    <script src="../main/main.js"></script>
+    <script src="auth.js"></script> 
+    <script src="account.js"></script> 
+</body>
+</html>

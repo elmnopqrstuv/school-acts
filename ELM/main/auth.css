@@ -1,0 +1,95 @@
+/* auth.css - Styles for Login and Register Pages */
+
+/* 1. Centering the Form Box */
+.centered-form-container {
+    /* Ensure the main container can center its content */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Start content slightly higher up */
+    padding: 80px 20px;
+    min-height: 70vh; /* Ensure it takes up enough screen space */
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 400px; /* Standard width for a login box */
+    padding: 40px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 2. Form Styling */
+.auth-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* 3. Button and Links */
+.auth-form .primary-cta {
+    width: 100%;
+    margin-top: 15px;
+    /* Styles are inherited from main.css, but enforcing width */
+}
+
+.auth-link-text {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.auth-link-text a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* 4. Messages */
+.auth-message {
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+/* Specific colors will be set by JavaScript (green for success, red for error) */

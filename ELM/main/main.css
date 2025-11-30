@@ -1,0 +1,855 @@
+/* ===================================================
+    1. ROOT VARIABLES & GLOBAL RESET
+    =================================================== */
+:root {
+    --color-bg-primary: #121212;
+    --color-bg-secondary: #1e1e1e;
+    --color-text-light: #ffffff;
+    --color-text-accent: #b3b3b3;
+    --color-accent-gold: #c9a75d;
+    --font-primary: 'Montserrat', sans-serif;
+    --spacing-unit: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------ */
+/* STICKY FOOTER FIX: CSS added to dock the footer to the bottom */
+/* ------------------------------------------------------------------ */
+html {
+    height: 100%; /* Ensure html element uses full height */
+}
+
+body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    
+    /* === STICKY FOOTER LOGIC START === */
+    min-height: 100vh; /* Set minimum height to full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack header, main, footer vertically */
+    /* === STICKY FOOTER LOGIC END === */
+}
+
+a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-gold);
+}
+
+/* ===================================================
+    INTERACTION OVERRIDE: REMOVE BLUE SELECTION/SWIPE HIGHLIGHT (THE FIX)
+    =================================================== */
+
+/* Removes the blue outline/highlight that appears when an element is tapped or focused. */
+.swipe-item:focus,
+.swipe-item:active,
+.product-card:focus,
+.product-card:active,
+.add-to-cart:focus,
+.add-to-cart:active,
+.collection-card:focus,
+.collection-card:active {
+    /* 1. Removes the default browser focus outline */
+    outline: none !important; 
+    
+    /* 2. Removes the colored highlight (the blue box) that appears on tap on mobile browsers (WebKit) */
+    -webkit-tap-highlight-color: transparent; 
+    
+    /* 3. Ensures no background color change on press */
+    background-color: transparent !important; 
+}
+
+
+/* ===================================================
+    2. HEADER & NAVIGATION (Left Logo, Right Links)
+    =================================================== */
+.site-header {
+    /* CHANGED: Use Flexbox for simple left/right alignment */
+    display: flex; 
+    justify-content: space-between; /* Pushes logo left, links right */
+    align-items: center; /* Vertically centers items */
+    
+    padding: 1.5rem 5%;
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-bg-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    /* REMOVED: text-align: center; white-space: nowrap; properties */
+    /* Logo is naturally left-aligned due to flexbox */
+}
+
+/* NEW: Combined container for all navigation and user action links */
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Space between the main nav and user actions */
+}
+
+/* Original main-nav and user-actions become sub-groups */
+.main-nav {
+    display: flex;
+    gap: 1.5rem; /* Space between SHOP and COLLECTIONS */
+}
+
+.user-actions {
+    display: flex;
+    gap: 1.5rem; /* Space between ACCOUNT and CART */
+}
+
+
+.main-nav a,
+.user-actions a {
+    /* REMOVED: margin-left from here as gap handles spacing */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Cleanup alignment (not strictly necessary with gap, but good for explicit control) */
+/* REMOVED: .main-nav a:first-child, .user-actions a:first-child specific margin resets */
+
+
+/* Removed these as they are no longer needed with new flex structure */
+/* .header-controls { display: flex; align-items: center; } */
+/* .header-controls.left { justify-content: flex-start; } */
+/* .header-controls.right { justify-content: flex-end; } */
+
+
+/* Missing definition for main content wrapper */
+.content-main {
+    width: 100%;
+    margin: 0 auto;
+    /* === STICKY FOOTER LOGIC START === */
+    flex-grow: 1; /* Pushes the main content area to take up all remaining space */
+    /* === STICKY FOOTER LOGIC END === */
+}
+
+/* ===================================================
+    3. SHARED COMPONENTS & CTAS
+    =================================================== */
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    /* Increased margin after heading */
+    margin-bottom: 4rem;
+    color: var(--color-text-light);
+}
+
+/* Applies to both <button> and <a> with class cta-button */
+.cta-button {
+    display: inline-block; /* Essential for <a> tags to behave like a block button */
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg-primary); 
+    padding: 0.75rem 2rem;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Ensures text is centered if it takes up full width */
+}
+
+.cta-button:hover {
+    background-color: #f7d188;
+}
+
+/* ===================================================
+    4. SECTION STYLES
+    =================================================== */
+
+/* SECTION 1: LANDING PAGE / HERO */
+.hero-section {
+    /* Increased height */
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* --- EDITED: Add background image with overlay --- */
+    background: linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.5)), 
+                /* FIXED PATH: Goes up one level (..) then into /images/product1/ */
+                url('../images/product1/ecom-SAINT_LAURENT_MF25_HOMEPAGE_DESKTOP-3.avif'); 
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    /* --- END EDITED --- */
+    /* Increased margin */
+    margin-bottom: 5rem;
+    padding: 0 5%;
+}
+
+.hero-section h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-light);
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--color-text-accent);
+    margin-bottom: 2rem;
+}
+
+
+/* SECTION 2: HIGHLIGHT PRODUCTS (Standard Grid) */
+.product-grid-section {
+    /* Increased padding */
+    padding: 4rem 5%;
+}
+
+.product-grid {
+    /* EDITED: Set fixed 3-column layout for desktop/large screens */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+    gap: 2rem;
+}
+
+/* Product Card Base (Includes JS hover transitions) */
+.product-card {
+    background-color: var(--color-bg-secondary);
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* --- MODIFIED: Fix for the product image sizing in the highlights grid --- */
+.product-image {
+    height: 400px; 
+    width: 100%;
+    /* Ensure the image fills the container without distortion and is clipped */
+    object-fit: contain; /* Changed to 'contain' to ensure the full image is visible */
+    object-position: center; /* Explicitly center the image */
+    display: block; /* Removes any extra space beneath the image */
+    margin-bottom: 1rem;
+    background-color: #fff; /* Added a white background to clearly see image bounds */
+}
+/* --- END MODIFIED --- */
+
+.product-card h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.price {
+    color: var(--color-accent-gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* JS Hover Effect Class */
+.product-card.hover-effect {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(160, 130, 80, 0.2); 
+}
+
+/* Add-to-Cart Button style */
+.add-to-cart {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: 1px solid var(--color-accent-gold);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg-primary);
+}
+
+
+/* SECTION 3: SWIPEABLE PRODUCTS (Horizontal Scroll - Works on all devices) */
+.swipeable-section {
+    /* Increased padding */
+    padding: 5rem 0; 
+    background-color: var(--color-bg-primary);
+}
+
+.swipe-container {
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    overflow-y: hidden;
+    /* REMOVED scrollbar-width: none and -ms-overflow-style: none to allow custom scrollbar */
+    padding: 1rem 5%; 
+    padding-bottom: 2rem; /* Extra padding for the scrollbar visually */
+    cursor: grab;
+}
+
+/* Custom scrollbar styling for Webkit browsers (Chrome, Safari, Edge) */
+.swipe-container::-webkit-scrollbar {
+    height: 6px; /* Height of the horizontal scrollbar */
+}
+
+.swipe-container::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary); /* Dark background */
+}
+
+.swipe-container::-webkit-scrollbar-thumb {
+    background: #444; /* Dark grey thumb */
+    border-radius: 3px;
+}
+
+.swipe-container::-webkit-scrollbar-thumb:hover {
+    background: #666; /* Slightly lighter on hover */
+}
+
+.swipe-track {
+    display: flex;
+    white-space: nowrap; 
+    gap: 2rem;
+}
+
+.swipe-item {
+    flex: 0 0 320px; /* Fixed width for each product card */
+    padding: 1rem;
+}
+
+.swipe-container.active-drag {
+    cursor: grabbing;
+}
+
+
+/* SECTION 4: PRODUCT IMAGE HIGHLIGHT (Full-Width Banner) */
+.image-highlight-section {
+    padding: 0;
+    /* Increased margin */
+    margin-top: 10rem;
+}
+
+.image-banner {
+    /* --- UPDATED: Set background image to the new path --- */
+    /* FIXED PATH: Goes up one level (..) then into /images/product1/ */
+    background-image: url('../images/product1/winter-main.jfif'); 
+    background-size: cover;          /* Make the image cover the entire container */
+    background-position: center 10%; /* Center image horizontally, slightly higher vertically */
+    background-repeat: no-repeat;
+    /* --- END UPDATED --- */
+    
+    /* Increased height for the banner */
+    min-height: 90vh; 
+    height: auto; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* ADDED: Overlay to ensure text readability */
+.image-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Dark semi-transparent overlay */
+    z-index: 1;
+}
+
+.overlay-text {
+    /* EDITED: Ensure overlay text is above the dark layer */
+    position: relative; 
+    z-index: 2; 
+    color: var(--color-text-light);
+    max-width: 80%;
+}
+
+.overlay-text h3 {
+    font-size: 3rem;
+    font-weight: 700; /* Increased weight for emphasis */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* Added subtle letter spacing */
+}
+
+/* Added style for the new paragraph element */
+.overlay-text p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+/* ===================================================
+    5. FEATURED PRODUCT SHOWCASE (New Section)
+    =================================================== */
+.featured-product-section {
+    /* Increased padding */
+    padding: 8rem 5%; 
+    background-color: var(--color-bg-primary);
+}
+
+.featured-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 4rem; /* Wide gap between image and text */
+    align-items: center; /* Vertically center content */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* UPDATED: Styles for the image container now holding an <img> */
+.featured-image-container {
+    /* Retains original height and border */
+    height: 650px;
+    width: 100%;
+    border: 1px solid var(--color-bg-secondary);
+}
+
+/* NEW: Style for the actual image inside the container */
+.featured-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers container without distortion */
+    display: block;
+}
+
+/* REMOVED: .featured-image-placeholder styles */
+
+.featured-info-container {
+    padding: 1rem 0;
+}
+
+.featured-category {
+    color: var(--color-accent-gold);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.featured-info-container h2 {
+    /* Override global h2 centering and margin for the info panel */
+    text-align: left;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.featured-description {
+    color: var(--color-text-accent);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.price-large {
+    color: var(--color-text-light);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+
+/* ===================================================
+    5.5. PROMOTIONAL MOVING BAR 🚚 (NEW SECTION)
+    =================================================== */
+.moving-bar-section {
+    /* Use a contrasting color to make it stand out, similar to one of your images */
+    background-color: #f0f0f0; 
+    padding: 1rem 0;
+    margin-top: 4rem; /* Add some space above the bar */
+    margin-bottom: 4rem; /* Add some space below the bar */
+    overflow: hidden; /* Important: Hides the content outside the bar */
+    white-space: nowrap;
+}
+
+.moving-bar-section p {
+    color: var(--color-bg-primary); /* Dark text on light background */
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    
+    /* Animation definition for continuous scrolling */
+    display: inline-block;
+    padding-left: 100%; /* Start the text off-screen to the right */
+    animation: scroll-text 30s linear infinite; /* Adjust time (30s) for speed */
+}
+
+/* Define the scrolling animation */
+@keyframes scroll-text {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); } /* Move text fully off-screen to the left */
+}
+
+
+/* ===================================================
+    6. COLLECTION SHOWCASE (Original Section 5)
+    =================================================== */
+.collection-showcase-section {
+    /* Increased padding */
+    padding: 7rem 5%;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
+}
+
+.collection-card {
+    background-color: var(--color-bg-secondary);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for potential future hover effects */
+}
+
+/* --- NEW: Wrapper for the image to control its size --- */
+.collection-image-wrapper {
+    height: 450px; /* Consistent height for all collection images */
+    width: 100%;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Ensures image doesn't overflow its container for hover effect */
+}
+
+/* --- NEW: Style the actual image inside the wrapper --- */
+.collection-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the container without distortion */
+    display: block;
+    transition: transform 0.3s ease; /* For hover zoom effect */
+}
+
+/* Optional: Hover effect for collection images */
+.collection-card:hover .collection-image-wrapper img {
+    transform: scale(1.05); /* Slightly zoom in on hover */
+}
+/* --- END NEW --- */
+
+
+/* --- REMOVED: Old .collection-image-placeholder styles --- */
+/*
+.collection-image-placeholder {
+    height: 450px;
+    margin-bottom: 1rem;
+}
+*/
+/* --- END REMOVED --- */
+
+.collection-card h4 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase; /* Added for consistency */
+}
+
+/* Added style for the "View All" link */
+.collection-card a {
+    color: var(--color-accent-gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+.collection-card a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================================
+    7. FOOTER (Original Section 6)
+    =================================================== */
+.site-footer {
+    background-color: var(--color-bg-secondary);
+    text-align: center;
+    padding: 2rem 5%;
+    /* Increased margin */
+    margin-top: 8rem;
+    border-top: 1px solid #333;
+}
+
+.site-footer p {
+    color: var(--color-text-accent);
+    font-size: 0.8rem;
+}
+
+/* ===================================================
+    8. MEDIA QUERIES (RESPONSIVENESS)
+    =================================================== */
+
+/* --- A. MOBILE STYLES (Screen size up to 767px wide) --- */
+@media (max-width: 767px) {
+    
+    /* ---------------------------------------------------- */
+    /* HEADER FIX: Logo Left, All Links Right */
+    /* ---------------------------------------------------- */
+    .site-header {
+        /* Keep as flex row for mobile */
+        display: flex; 
+        flex-direction: row; /* Ensure items are side-by-side */
+        justify-content: space-between; /* Pushes logo left, group right */
+        align-items: center; /* Vertically center */
+        padding: 1rem 3%;
+        gap: 0.5rem; /* Gap between logo and the right group if needed */
+        /* Reset any conflicting grid properties */
+        grid-template-columns: none;
+        grid-template-rows: none;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        /* Revert text-align for logo to be left */
+        text-align: left; 
+        /* Ensure it doesn't take up full width or get ordered incorrectly */
+        width: auto; 
+        order: 1; 
+        margin-bottom: 0; /* Remove previous mobile margin */
+    }
+    
+    /* The combined container for all nav and user actions */
+    .header-right-group {
+        display: flex;
+        flex-wrap: wrap; /* Allow links to wrap to new line if too many */
+        justify-content: flex-end; /* Push links to the right */
+        align-items: center;
+        order: 2; /* Ensures it comes after the logo */
+        gap: 0.8rem; /* Smaller gap between all individual links */
+    }
+    
+    /* Make sure main-nav and user-actions are displayed as flex within the right group */
+    .main-nav,
+    .user-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem; /* Smaller gap for links within their groups */
+    }
+    
+    /* Remove the separator from previous attempts */
+    .main-nav {
+        border-right: none; 
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    /* Consolidated Link Styling */
+    .main-nav a,
+    .user-actions a {
+        margin: 0; /* Clear previous margins */
+        font-size: 0.75rem; 
+        white-space: nowrap; /* Prevent individual link text from wrapping */
+    }
+    
+    /* ---------------------------------------------------- */
+    /* PRODUCT GRID & COLLECTION PAGE FIXES */
+    /* ---------------------------------------------------- */
+
+    /* Generic Heading Fix */
+    h2 {
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+    }
+    
+    /* Hero */
+    .hero-section {
+        height: 70vh; 
+        margin-bottom: 3rem;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Standard Grid */
+    .product-grid-section {
+        padding: 3rem 3%;
+    }
+    
+    .product-grid {
+        /* EDITED: Enforce 2 columns for mobile view */
+        grid-template-columns: 1fr 1fr; 
+        gap: 0.5rem;
+    }
+    
+    /* --- MODIFIED: Apply mobile height to the actual product image --- */
+    .product-image {
+        height: 250px; 
+        object-fit: contain; /* Changed to 'contain' for mobile too */
+        object-position: center; /* Centering for mobile */
+        background-color: #fff; /* Added white background for mobile */
+    }
+    /* --- END MODIFIED --- */
+    
+    /* NEW: Product card text adjustments for mobile */
+    .product-card h3 {
+        font-size: 0.8rem;
+    }
+    .price {
+        font-size: 0.9rem;
+    }
+
+    /* Swipeable Section */
+    .swipeable-section {
+        padding: 4rem 0; 
+    }
+    
+    .swipe-container {
+        padding: 0 3%; 
+    }
+    
+    .swipe-item {
+        flex: 0 0 85vw; 
+    }
+
+    /* Section 4: Image Highlight Fix */
+    .image-banner {
+        min-height: 50vh; /* Shorter height on mobile */
+    }
+
+    .overlay-text h3 {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+    }
+    .overlay-text p {
+        font-size: 1rem;
+    }
+
+    /* Featured Product Section (Stack columns vertically) */
+    .featured-product-section {
+        padding: 4rem 3%;
+    }
+
+    .featured-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .featured-image-container {
+        height: 400px;
+    }
+    
+    .featured-info-container h2 {
+        text-align: center; 
+        font-size: 2.5rem;
+    }
+    .featured-info-container .cta-button {
+        width: 100%; 
+    }
+    
+    /* Promotional Moving Bar Mobile Adjustments */
+    .moving-bar-section {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding: 0.75rem 0;
+    }
+    .moving-bar-section p {
+        font-size: 0.9rem;
+        animation: scroll-text 15s linear infinite;
+    }
+    
+    /* Collection Showcase */
+    .collection-showcase-section {
+        padding: 4rem 3%; 
+    }
+
+    .collection-grid {
+        grid-template-columns: 1fr; 
+        gap: 1rem;
+    }
+    
+    /* --- NEW/EDITED: Mobile styles for Collection Image Wrapper --- */
+    .collection-image-wrapper {
+        height: 300px;
+    }
+    
+    /* REMOVED: Old .collection-image-placeholder mobile style */
+    
+    /* --- END NEW/EDITED --- */
+
+    /* Footer */
+    .site-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 5rem;
+    }
+}
+
+/* --- B. TABLET STYLES (Screen size from 768px to 1199px wide) --- */
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    /* Header */
+    .site-header {
+        padding: 1.5rem 4%;
+    }
+
+    .main-nav a,
+    .user-actions a {
+        margin-left: 1rem;
+        font-size: 0.85rem; 
+    }
+
+    /* Featured Product Section */
+    .featured-product-section {
+        padding: 6rem 4%;
+    }
+    
+    /* Standard Product Grid */
+    .product-grid {
+        /* EDITED: Ensure 3 columns for tablet view */
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 1.5rem;
+    }
+
+    /* Swipeable Section */
+    .swipe-container {
+        padding: 1rem 8%;
+    }
+    
+    .swipe-item {
+        flex: 0 0 280px; 
+    }
+
+    /* Collection Showcase */
+    .collection-showcase-section {
+        padding: 6rem 4%; 
+    }
+    .collection-grid {
+        gap: 1.5rem; 
+    }
+}
+
+/* --- C. LARGE DESKTOP STYLES (Screen size 1200px wide and up) --- */
+@media (min-width: 1200px) {
+    /* Main content padding for very large screens */
+    .content-main {
+        padding: 0 8%;
+    }
+
+    /* Remove padding from sections that should stretch the full width of the main content wrapper */
+    .product-grid-section,
+    .collection-showcase-section,
+    .hero-section,
+    .featured-product-section { 
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .product-card {
+        padding: 2rem;
+    }
+}

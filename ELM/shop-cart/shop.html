@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All Products - Collection</title>
+    <link rel="stylesheet" href="../main/main.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo"><a href="../main/main.html">ELM</a></div>
+        
+        <div class="header-right-group">
+            <nav class="main-nav">
+                <a href="shop.html">Shop</a>
+                <a href="../collection/collection.html">Collections</a>
+            </nav>
+            <div class="user-actions">
+                <a href="../main/account.html">Account</a>
+                <a href="cart.html" id="cart-link">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+    <div class="content-main">
+        <main class="shop-page-wrapper">
+            <h2 class="collection-title">All Products</h2>
+
+            <div class="shop-layout">
+                
+                <aside class="sidebar-filters">
+                    <div class="filter-group">
+                        <h3 class="filter-title">Category</h3>
+                        <ul class="filter-list" data-filter-type="category">
+                            <li><a href="#" class="filter-link active" data-filter-value="all">All (20)</a></li>
+                            <li><a href="#" class="filter-link" data-filter-value="outerwear">Outerwear (4)</a></li> 
+                            <li><a href="#" class="filter-link" data-filter-value="trousers">Trousers (2)</a></li> 
+                            <li><a href="#" class="filter-link" data-filter-value="accessories">Accessories (11)</a></li> 
+                            <li><a href="#" class="filter-link" data-filter-value="footwear">Footwear (3)</a></li> 
+                        </ul>
+                    </div>
+                    
+                    <hr class="filter-separator">
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">Color</h3>
+                        <div class="color-options" data-filter-type="color">
+                            <div class="color-swatch-small active" style="background-color: #000;" data-filter-value="Black"></div>
+                            <div class="color-swatch-small" style="background-color: #fff; border: 1px solid #777;" data-filter-value="White"></div>
+                            <div class="color-swatch-small" style="background-color: #a0522d;" data-filter-value="Brown"></div>
+                        </div>
+                    </div>
+
+                    <hr class="filter-separator">
+
+                    <div class="filter-group price-range-group">
+                        <h3 class="filter-title">Price Range</h3>
+                        
+                        <div class="price-slider-placeholder">
+                            <input type="number" id="price-min-input" min="50" max="5000" value="50" step="50">
+                            <span>-</span>
+                            <input type="number" id="price-max-input" min="50" max="5000" value="5000" step="50">
+                            <input type="range" id="price-range-slider" min="50" max="5000" value="5000" step="50">
+                        </div>
+                    </div>
+                    
+                </aside>
+
+
+                <section class="product-listing-area">
+                    
+                    <div class="sort-bar">
+                        <p id="results-count">Showing 6 of 26 Results</p>
+                        <select id="sort-dropdown">
+                            <option value="default">Sort By: Featured</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                         
+                        </select>
+                    </div>
+                    
+                    <div class="product-grid">
+
+    <div class="product-card" data-category="outerwear" data-color="Black" data-price="950" data-id="p1">
+        <a href="../products/knitted-sweater.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/win-col/sweater.jpg" alt="knitted sweater">
+            </div>
+            <h4 class="product-name">knitted sweater</h4>
+            <p class="product-price-grid price">$950</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="knitted sweater" 
+            data-product-price="950" 
+            data-product-id="p1"
+            data-product-image="../images/collections/win-col/sweater.jpg">
+            Add to Bag
+        </button>
+    </div>
+
+    <div class="product-card" data-category="accessories" data-color="Black" data-price="220" data-id="p2">
+        <a href="../products/chain-bracelet.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/chain-bracelet/product99378-3651_cropped.jpg" alt="Chain Bracelet">
+            </div>
+            <h4 class="product-name">Chain Bracelet</h4>
+            <p class="product-price-grid price">$220</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Chain Bracelet" 
+            data-product-price="220" 
+            data-product-id="p2"
+            data-product-image="../images/products/chain-bracelet/product99378-3651_cropped.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="outerwear" data-color="White" data-price="450" data-id="p3">
+        <a href="../products/cassandre-shirt.html" class="product-link"> <div class="product-image-container">
+                <img src="../images/product1/Medium-826821Y217W9000_A.avif" alt="Cassandre Shirt">
+            </div>
+            <h4 class="product-name">Cassandre Shirt</h4>
+            <p class="product-price-grid price">$450</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Cassandre Shirt" 
+            data-product-price="450" 
+            data-product-id="p3"
+            data-product-image="../images/product1/Medium-826821Y217W9000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="footwear" data-color="Black" data-price="1800" data-id="p4">
+        <a href="../products/joe-over-the-knee-boots.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/product1/Medium-843730AAE901000_A.avif" alt="Joe Over The Knee Boots">
+            </div>
+            <h4 class="product-name">Joe Over The Knee Boots</h4>
+            <p class="product-price-grid price">$1800</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Joe Over The Knee Boots" 
+            data-product-price="1800" 
+            data-product-id="p4"
+            data-product-image="../images/product1/Medium-843730AAE901000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="trousers" data-color="Black" data-price="550" data-id="p5">
+        <a href="../products/high-rise-pants-wool.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/product1/Medium-844153Y5K321000_A.avif" alt="High Rise Pants in Wool">
+            </div>
+            <h4 class="product-name">High Rise Pants in Wool</h4>
+            <p class="product-price-grid price">$550</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="High Rise Pants in Wool" 
+            data-product-price="550" 
+            data-product-id="p5"
+            data-product-image="../images/product1/Medium-844153Y5K321000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Brown" data-price="850" data-id="p6">
+        <a href="../products/collar-in-feathers.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/product1/Medium-8471173YT086300_A.avif" alt="Collar in Feathers">
+            </div>
+            <h4 class="product-name">Collar in Feathers</h4>
+            <p class="product-price-grid price">$850</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Collar in Feathers" 
+            data-product-price="850" 
+            data-product-id="p6"
+            data-product-image="../images/product1/Medium-8471173YT086300_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="outerwear" data-color="Black" data-price="1200" data-id="p7">
+        <a href="../products/long-coat-cashmere.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/product1/Medium-842171Y3J461000_A.avif" alt="Long Coat in Cashmere">
+            </div>
+            <h4 class="product-name">Long Coat in Cashmere</h4>
+            <p class="product-price-grid price">$1200</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Long Coat in Cashmere" 
+            data-product-price="1200" 
+            data-product-id="p7"
+            data-product-image="../images/product1/Medium-842171Y3J461000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+
+    <div class="product-card" data-category="outerwear" data-color="White" data-price="1150" data-id="p8">
+        <a href="../products/jacket-wool-cashmere.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/product1/Medium-835102Y5K321000_A.avif" alt="jacket in wool-cashmere">
+            </div>
+            <h4 class="product-name">jacket in wool-cashmere</h4>
+            <p class="product-price-grid price">$1150</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="jacket in wool-cashmere" 
+            data-product-price="1150" 
+            data-product-id="p8"
+            data-product-image="../images/product1/Medium-835102Y5K321000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="trousers" data-color="Brown" data-price="1010" data-id="p9">
+        <a href="../products/suspender-wool-pants.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/win-col/p1.jpg" alt="suspender wool pants">
+            </div>
+            <h4 class="product-name">suspender wool pants</h4>
+            <p class="product-price-grid price">$1010</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="suspender wool pants" 
+            data-product-price="1010" 
+            data-product-id="p9"
+            data-product-image="../images/collections/win-col/p1.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="footwear" data-color="White" data-price="400" data-id="p10">
+        <a href="../products/suede-sneaker.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/sue-sne/suedesnea.jpg" alt="suede sneaker">
+            </div>
+            <h4 class="product-name">suede sneaker</h4>
+            <p class="product-price-grid price">$400</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="suede sneaker" 
+            data-product-price="400" 
+            data-product-id="p10"
+            data-product-image="../images/products/sue-sne/suedesnea.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Black" data-price="110" data-id="p11">
+        <a href="../products/leather-gloves.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/win-col/gloves1.jpg" alt="Leather Gloves">
+            </div>
+            <h4 class="product-name">Leather Gloves</h4>
+            <p class="product-price-grid price">$110</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Leather Gloves" 
+            data-product-price="110" 
+            data-product-id="p11"
+            data-product-image="../images/collections/win-col/gloves1.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Brown" data-price="750" data-id="p12">
+        <a href="../products/croc-card-holder.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/adl-col/croc-card holder/adl1.1.webp" alt="croc-card holder">
+            </div>
+            <h4 class="product-name">croc-card holder</h4>
+            <p class="product-price-grid price">$750</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="croc-card holder" 
+            data-product-price="750" 
+            data-product-id="p12"
+            data-product-image="../images/collections/adl-col/croc-card holder/adl1.1.webp">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="footwear" data-color="Black" data-price="200" data-id="p13">
+        <a href="../products/shearling-lined-boots.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/win-col/boots1.jpg" alt="Shearling Lined Boots">
+            </div>
+            <h4 class="product-name">Shearling Lined Boots</h4>
+            <p class="product-price-grid price">$200</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Shearling Lined Boots" 
+            data-product-price="200" 
+            data-product-id="p13"
+            data-product-image="../images/collections/win-col/boots1.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Brown" data-price="50" data-id="p14">
+        <a href="../products/merino-wool-beanie.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/collections/win-col/beanie.jpg" alt="merino wool beanie">
+            </div>
+            <h4 class="product-name">merino wool beanie</h4>
+            <p class="product-price-grid price">$50</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="merino wool beanie" 
+            data-product-price="50" 
+            data-product-id="p14"
+            data-product-image="../images/collections/win-col/beanie.jpg">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Brown" data-price="200" data-id="p15">
+        <a href="../products/leather-clutch.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/leather clutch/clutch1.avif" alt="leather clutch">
+            </div>
+            <h4 class="product-name">leather clutch</h4>
+            <p class="product-price-grid price">$200</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="leather clutch" 
+            data-product-price="200" 
+            data-product-id="p15"
+            data-product-image="../images/products/leather clutch/clutch1.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Black" data-price="450" data-id="p16">
+        <a href="../products/silk-scarf.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/silk-sca/shopping.webp" alt="silk scarf">
+            </div>
+            <h4 class="product-name">silk scarf</h4>
+            <p class="product-price-grid price">$450</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="silk scarf" 
+            data-product-price="450" 
+            data-product-id="p16"
+            data-product-image="../images/products/silk-sca/shopping.webp">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="Black" data-price="800" data-id="p17">
+        <a href="../products/geometric-earrings.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/earrings/13284469_fpx.webp" alt="geometric earrings">
+            </div>
+            <h4 class="product-name">geometric earrings</h4>
+            <p class="product-price-grid price">$800</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="geometric earrings" 
+            data-product-price="800" 
+            data-product-id="p17"
+            data-product-image="../images/products/earrings/13284469_fpx.webp">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="White" data-price="75" data-id="p18">
+        <a href="../products/purple-ring-set.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/puri/pu.webp" alt="Purple ring set">
+            </div>
+            <h4 class="product-name">Purple ring set</h4>
+            <p class="product-price-grid price">$75</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Purple ring set" 
+            data-product-price="75" 
+            data-product-id="p18"
+            data-product-image="../images/products/puri/pu.webp">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="White" data-price="500" data-id="p19">
+        <a href="../products/leather-backpack.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/backpack/Medium2-756285FACEO1000_A.avif" alt="leather backpack">
+            </div>
+            <h4 class="product-name">leather backpack</h4>
+            <p class="product-price-grid price">$500</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="leather backpack" 
+            data-product-price="500" 
+            data-product-id="p19"
+            data-product-image="../images/products/backpack/Medium2-756285FACEO1000_A.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    <div class="product-card" data-category="accessories" data-color="White" data-price="300" data-id="p20">
+        <a href="../products/minimalist-belt.html" class="product-link">
+            <div class="product-image-container">
+                <img src="../images/products/belt/b1.avif" alt="Minimalist Belt">
+            </div>
+            <h4 class="product-name">Minimalist Belt</h4>
+            <p class="product-price-grid price">$300</p>
+        </a>
+        <button class="add-to-bag-btn add-to-cart"
+            data-product-name="Minimalist Belt" 
+            data-product-price="300" 
+            data-product-id="p20"
+            data-product-image="../images/products/belt/b1.avif">
+            Add to Bag
+        </button>
+    </div>
+    
+    
+
+</div>
+                    
+                    <div id="pagination-controls" class="pagination-controls">
+                        </div>
+
+                </section>
+            </div>
+        </main>
+    </div>
+    <footer class="site-footer">
+        <p>© 2025 BRAND NAME. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a> | <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <script src="shop.js"></script>
+</body>
+</html>

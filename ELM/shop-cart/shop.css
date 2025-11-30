@@ -1,0 +1,528 @@
+/* shop.css */
+
+/* ===================================================
+    BASE VARIABLES (Ensure these are defined)
+    =================================================== */
+:root {
+    --color-bg-primary: #111;
+    --color-bg-secondary: #222;
+    --color-text-light: #f4f4f4;
+    --color-text-accent: #aaa;
+    --color-accent-gold: #c3b06e; /* Using a dark gold/bronze tone */
+}
+
+
+/* ===================================================
+    SHOP PAGE LAYOUT & FILTERS 
+    =================================================== */
+
+.shop-page-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 5%;
+}
+
+.shop-page-wrapper h2 {
+    text-align: left;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+}
+
+.shop-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr; 
+    gap: 4rem;
+}
+
+/* --- Sidebar Filters (Desktop) --- */
+.sidebar-filters {
+    padding-right: 2rem;
+    border-right: 1px solid var(--color-bg-secondary);
+}
+
+.filter-group {
+    margin-bottom: 3rem;
+}
+
+.filter-group h3 {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.filter-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.filter-group li {
+    margin-bottom: 0.5rem;
+}
+
+.filter-group a {
+    color: var(--color-text-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.filter-group a:hover, 
+.filter-group a.active {
+    color: var(--color-accent-gold);
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-swatch-small {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--color-bg-secondary);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-swatch-small.active {
+    border-color: var(--color-accent-gold);
+    transform: scale(1.1);
+}
+
+.color-swatch-small:hover {
+    transform: scale(1.1);
+    border-color: var(--color-accent-gold);
+}
+
+/* --- Price Slider Styling --- */
+.price-slider-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+    flex-wrap: wrap;
+}
+
+.price-slider-placeholder input[type="number"] {
+    width: 80px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--color-bg-secondary);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-light);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+    -moz-appearance: textfield; 
+    appearance: textfield; 
+}
+
+.price-slider-placeholder input[type="number"]::-webkit-outer-spin-button,
+.price-slider-placeholder input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.price-slider-placeholder span {
+    color: var(--color-text-accent);
+}
+
+.price-slider-placeholder input[type="range"] {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none; 
+    background: var(--color-bg-secondary);
+    height: 5px;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.price-slider-placeholder input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent-gold);
+    cursor: pointer;
+    margin-top: -6.5px; 
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    transition: background 0.2s ease;
+}
+
+.price-slider-placeholder input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent-gold); 
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    transition: background 0.2s ease;
+}
+
+.price-slider-placeholder input[type="range"]::-webkit-slider-thumb:hover,
+.price-slider-placeholder input[type="range"]::-moz-range-thumb:hover {
+    background: #b0914e; 
+}
+
+
+/* --- Product Listing Area & Sorting --- */
+.sort-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-bg-secondary);
+    padding-bottom: 1rem;
+}
+
+.sort-bar p {
+    color: var(--color-text-accent);
+}
+
+.sort-bar select {
+    padding: 0.5rem;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-bg-secondary);
+    cursor: pointer;
+}
+
+/* --- PRODUCT GRID STYLES (Desktop) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+    gap: 2rem 1.5rem;
+}
+
+.product-card.hidden {
+    display: none;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+
+.product-image-container {
+    padding-top: 130%; /* Tall aspect ratio for clothing */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    background-color: #f1f1f1; 
+}
+
+.product-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.product-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+}
+
+.product-price-grid {
+    font-size: 0.95rem;
+    color: var(--color-accent-gold); 
+    margin-bottom: 1rem;
+}
+
+.add-to-bag-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-text-accent);
+    color: var(--color-text-light);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: inline-block;
+    min-width: 120px;
+    text-transform: uppercase;
+}
+
+.add-to-bag-btn:hover {
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg-primary);
+    border-color: var(--color-accent-gold);
+}
+
+/* --- PAGINATION & "LOAD MORE" BUTTON --- */
+/* The .pagination-placeholder is now where the Load More button lives */
+.pagination-placeholder {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* Style for the old numbered pagination (kept for collection.html, if needed) */
+.pagination-placeholder a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-text-light);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: 1px solid var(--color-bg-secondary);
+    transition: background-color 0.2s;
+}
+
+.pagination-placeholder a:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+.pagination-placeholder a.active {
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg-primary);
+    border-color: var(--color-accent-gold);
+}
+
+/* NEW: Load More Button Style */
+.load-more-btn {
+    display: inline-block; /* Changed from block to inline-block */
+    width: auto;
+    min-width: 250px;
+    padding: 12px 20px;
+    margin: 30px auto;
+    background-color: var(--color-accent-gold); 
+    color: var(--color-bg-primary);
+    border: 1px solid var(--color-accent-gold);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: transparent;
+    color: var(--color-accent-gold);
+}
+
+
+/* ===================================================
+    PRODUCT DETAIL PAGE STYLES 🛍️
+    (Add these styles to the same file to cover product-detail.html)
+    =================================================== */
+
+.product-detail-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 5%;
+    display: flex;
+    gap: 5rem;
+    color: var(--color-text-light);
+}
+
+.product-images {
+    flex: 1; /* Takes up half the space */
+    position: relative;
+}
+
+.product-images .main-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background-color: #f1f1f1; /* Light background for the image area */
+}
+
+.product-info {
+    flex: 1; /* Takes up half the space */
+    padding-top: 2rem;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    color: var(--color-accent-gold);
+    margin-bottom: 2rem;
+}
+
+.product-description p {
+    color: var(--color-text-accent);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Reusing the add-to-bag-btn for consistency, but making it bigger */
+.add-to-cart-controls .add-to-bag-btn {
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-width: 2px; /* Make the border thicker on the detail page */
+}
+
+
+/* ===================================================
+    MEDIA QUERIES (RESPONSIVENESS)
+    =================================================== */
+
+/* Tablet & Smaller Screens */
+@media (max-width: 992px) {
+    
+    /* SHOP LAYOUT */
+    .shop-layout {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 2rem;
+    }
+    
+    .shop-page-wrapper {
+        padding: 3rem 3%;
+    }
+
+    .shop-page-wrapper h2 {
+        text-align: center;
+    }
+
+    .sidebar-filters {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid var(--color-bg-secondary); 
+        padding-bottom: 2rem;
+    }
+    
+    /* Category filter style change: Inline tags */
+    .filter-group ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .filter-group li {
+        margin-bottom: 0;
+    }
+    
+    .filter-group a {
+        border: 1px solid var(--color-bg-secondary);
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: inline-block;
+        font-size: 0.85rem;
+    }
+
+    .sort-bar {
+        padding-top: 1rem;
+    }
+
+    /* PRODUCT GRID: Force 2 columns */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem; 
+    }
+    
+    .product-image-container {
+        padding-top: 100%; /* Change from 130% to 100% (Square aspect ratio) */
+        margin-bottom: 0.5rem;
+    }
+
+    /* PRODUCT DETAIL LAYOUT (STACKED) */
+    .product-detail-container {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 2rem auto;
+    }
+    
+    .product-info {
+        padding-top: 0;
+    }
+
+    .product-title {
+        font-size: 2rem;
+    }
+}
+
+/* Small Phone Screens */
+@media (max-width: 480px) {
+    
+    .shop-page-wrapper {
+        padding: 2rem 2%; /* Tighter padding on very narrow screens */
+    }
+
+    /* KEEPING 2 COLUMNS, but reducing spacing and padding */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 0.5rem; /* Very small gap */
+    }
+    
+    .product-card {
+        padding: 5px; /* Reduce padding inside the product card */
+    }
+
+    .product-image-container {
+        padding-top: 110%; /* Slightly taller than square, but shorter than desktop */
+    }
+    
+    /* Reduce text sizes to save space */
+    .product-name {
+        font-size: 0.8rem;
+    }
+    
+    .product-price-grid {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Smallest button size */
+    .add-to-bag-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+        min-width: unset; /* Allow button width to shrink */
+        width: 90%; /* Occupy most of the card width */
+    }
+
+    /* Stack sort bar items */
+    .sort-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
+    
+    /* Price filter input size adjustments */
+    .price-slider-placeholder {
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+    .price-slider-placeholder input[type="number"] {
+        width: 80px;
+        margin-right: 0.5rem;
+    }
+    
+    .price-slider-placeholder input[type="range"] {
+        margin-top: 1.5rem;
+    }
+    
+    /* PRODUCT DETAIL adjustments */
+    .product-title {
+        font-size: 1.8rem;
+    }
+    .product-price {
+        font-size: 1.5rem;
+    }
+}

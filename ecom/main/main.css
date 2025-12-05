@@ -692,7 +692,7 @@ h2 {
     }
     
     /* Promotional Moving Bar Mobile Adjustments */
-    .moving-bar-section {
+    .moving-bar-section p{
         margin-top: 3rem;
         margin-bottom: 3rem;
         padding: 0.75rem 0;
@@ -869,5 +869,6 @@ img, picture, svg, video {
   }
 
 }
+
 
 

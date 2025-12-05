@@ -855,7 +855,7 @@ img, picture, svg, video {
 
 
 @media (prefers-reduced-motion: reduce) {
-  .moving-bar-section .moving-bar-track {
+  .moving-bar-section p .moving-bar-track {
     animation: scroll-text 20s linear infinite;
   }
 }
@@ -869,4 +869,5 @@ img, picture, svg, video {
   }
 
 }
+
 

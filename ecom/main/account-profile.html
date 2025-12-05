@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Details - ELM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="account.css"> 
+    <style>
+        .profile-section {
+            margin-bottom: 3rem;
+        }
+
+        .profile-section h3 {
+            font-size: 1.3rem;
+            color: var(--color-accent-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: var(--color-accent-gold);
+            outline: none;
+            box-shadow: 0 0 8px rgba(212,175,55,0.2);
+        }
+
+        .success-message {
+            background-color: rgba(76, 175, 80, 0.15);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-save {
+            background: linear-gradient(180deg, #e6c86b, #c59e2a);
+            color: #0b0b0b;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--color-text-accent);
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #333;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            border-color: var(--color-accent-gold);
+            color: var(--color-accent-gold);
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-save, .btn-cancel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="logo"><a href="main.html">ELM</a></div>
+        
+        <div class="header-right-group">
+            <nav class="main-nav">
+                <a href="../shop-cart/shop.html">Shop</a>
+                <a href="../collection/collection.html">Collections</a>
+            </nav>
+            <div class="user-actions">
+                <a href="account.html">Account</a> 
+                <a href="../shop-cart/cart.html" id="cart-link">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-main">
+        <section class="account-dashboard">
+            <h1 class="page-title">Profile Details</h1>
+            
+            <div class="account-layout-grid">
+                
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="account.html">Dashboard</a></li>
+                        <li><a href="account-orders.html">Order History</a></li>
+                        <li><a href="account-profile.html" class="active">Profile Details</a></li>
+                        <li><a href="account-addresses.html">Address Book</a></li>
+                        <li><a href="#" id="logout-button" class="logout-link">Sign Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="account-content">
+                    <h2 class="content-title">Your Profile</h2>
+                    
+                    <div class="success-message" id="success-message">✅ Profile updated successfully!</div>
+
+                    <form id="profile-form">
+                        <div class="profile-section">
+                            <h3>Account Information</h3>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" placeholder="John">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" placeholder="Doe">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3>Change Password</h3>
+
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" placeholder="Enter current password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" placeholder="Enter new password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" placeholder="Confirm new password">
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn-save">Save Changes</button>
+                            <button type="button" class="btn-cancel" onclick="window.history.back()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>&copy; 2025 ELM. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="account.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileForm = document.getElementById('profile-form');
+            const successMessage = document.getElementById('success-message');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load user profile data
+            const userProfile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+
+            document.getElementById('email').value = currentUser.email;
+            document.getElementById('first-name').value = userProfile.firstName || '';
+            document.getElementById('last-name').value = userProfile.lastName || '';
+            document.getElementById('phone').value = userProfile.phone || '';
+
+            // Handle form submission
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const newPassword = document.getElementById('new-password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                // Validate passwords match if changing password
+                if (newPassword && newPassword !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                // Update profile
+                const updatedProfile = {
+                    firstName: document.getElementById('first-name').value,
+                    lastName: document.getElementById('last-name').value,
+                    phone: document.getElementById('phone').value,
+                };
+
+                // Update password if provided
+                if (newPassword) {
+                    currentUser.password = newPassword;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+
+                localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+
+                // Show success message
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+
+                // Clear password fields
+                document.getElementById('current-password').value = '';
+                document.getElementById('new-password').value = '';
+                document.getElementById('confirm-password').value = '';
+            });
+        });
+    </script>
+</body>
+</html>

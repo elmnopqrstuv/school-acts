@@ -1,0 +1,262 @@
+/* ===================================================
+    COLLECTION LANDING PAGE STYLES
+    =================================================== */
+
+.collection-landing-wrapper {
+    /* Use padding to ensure content is centered and has breathing room */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 5%; /* Top/Bottom padding, 5% side padding */
+}
+
+.page-header {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- FEATURED COLLECTIONS GRID --- */
+
+.collection-featured-grid-section {
+    padding: 3rem 0; /* Add vertical space */
+}
+
+.collection-featured-grid-section h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+}
+
+.collection-grid {
+    display: grid;
+    /* Create a 4-column layout for the featured sections */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem;
+}
+
+.collection-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.collection-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.collection-image-wrapper {
+    /* Ensure the image container has a consistent height */
+    height: 400px; 
+    width: 100%;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Important for the hover effect */
+    background-color: #333; /* Fallback/placeholder color */
+}
+
+.collection-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the container without distortion */
+    display: block;
+    transition: transform 0.4s ease; /* Smooth zoom effect */
+}
+
+.collection-card:hover .collection-image-wrapper img {
+    transform: scale(1.05); /* Zoom in effect on hover */
+}
+
+.collection-card h4 {
+    font-size: 1.1rem; 
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.collection-card span {
+    color: var(--color-accent-gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: color 0.2s ease;
+}
+
+.collection-card:hover span {
+    color: #fff; /* White hover effect on gold text */
+    text-decoration: underline;
+}
+
+/* --- SECTION DIVIDER --- */
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #333; /* Dark, subtle line */
+    margin: 8rem 0; /* Plenty of space above and below */
+}
+
+/* --- SHOP BY PRODUCT CATEGORY SECTION --- */
+
+.shop-by-category-section {
+    text-align: center;
+    padding-bottom: 8rem;
+}
+
+.shop-by-category-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+}
+
+.category-description {
+    font-size: 1rem;
+    color: #999;
+    margin-bottom: 3rem;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 1.5rem; 
+    margin-top: 2rem;
+}
+
+.category-link {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-light);
+    padding: 1rem 2rem;
+    border: 1px solid #333;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none; /* Remove default link underline */
+}
+
+.category-link:hover {
+    background-color: var(--color-accent-gold);
+    color: var(--color-bg-primary); /* Dark text on gold background */
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================================
+    RESPONSIVENESS
+    =================================================== */
+
+@media (max-width: 1024px) {
+    .collection-grid {
+        /* On medium screens (tablets), switch to 2 columns */
+        grid-template-columns: 1fr 1fr; 
+        gap: 1.5rem;
+    }
+    .collection-image-wrapper {
+        height: 300px; 
+    }
+    .section-divider {
+        margin: 6rem 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-header {
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+    }
+    .collection-grid {
+        /* On small screens (mobile), switch to 1 column */
+        grid-template-columns: 1fr; 
+    }
+    .collection-image-wrapper {
+        height: 250px;
+    }
+    .collection-featured-grid-section h2, 
+    .shop-by-category-section h2 {
+        font-size: 1.5rem;
+    }
+    .section-divider {
+        margin: 4rem 0;
+    }
+    .category-list {
+        gap: 1rem;
+    }
+    .category-link {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Enhanced mobile responsiveness for collection page */
+@media (max-width: 600px) {
+  .collection-landing-wrapper {
+    padding: 1rem 3%;
+  }
+
+  .page-header {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .collection-featured-grid-section h2,
+  .shop-by-category-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .collection-image-wrapper {
+    height: 200px;
+  }
+
+  .collection-card h4 {
+    font-size: 1rem;
+  }
+
+  .collection-card span {
+    font-size: 0.8rem;
+  }
+
+  .category-description {
+    font-size: 0.9rem;
+  }
+
+  .category-list {
+    gap: 0.75rem;
+  }
+
+  .category-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .section-divider {
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-grid {
+    gap: 1.25rem;
+  }
+
+  .collection-image-wrapper {
+    height: 280px;
+  }
+}

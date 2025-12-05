@@ -863,7 +863,9 @@ img, picture, svg, video {
 
 @media (max-width: 480px) {
   .moving-bar-section .moving-bar-track {
+      animation: scroll-text 20s linear infinite;
     font-size: 0.85rem;
     padding-left: 40%;
   }
+
 }

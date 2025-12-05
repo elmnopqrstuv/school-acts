@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - ELM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="account.css"> 
+    <style>
+        .order-card {
+            background: linear-gradient(180deg, rgba(20,20,20,0.9), rgba(16,16,16,0.9));
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #333;
+        }
+
+        .order-id {
+            font-weight: 700;
+            color: var(--color-accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .order-date {
+            color: var(--color-text-accent);
+            font-size: 0.9rem;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .order-status.processing {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            border: 1px solid #2196F3;
+        }
+
+        .order-status.shipped {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        .order-items {
+            margin: 1rem 0;
+        }
+
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #1a1a1a;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .order-item-meta {
+            color: var(--color-text-accent);
+            font-size: 0.9rem;
+        }
+
+        .order-item-price {
+            text-align: right;
+            color: var(--color-accent-gold);
+            font-weight: 700;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #333;
+        }
+
+        .order-total {
+            font-weight: 700;
+            color: var(--color-text-light);
+        }
+
+        .order-total-amount {
+            color: var(--color-accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .order-shipping-info {
+            font-size: 0.85rem;
+            color: var(--color-text-accent);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #222;
+        }
+
+        .empty-orders {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-text-accent);
+        }
+
+        @media (max-width: 768px) {
+            .order-card {
+                padding: 1rem;
+            }
+
+            .order-item {
+                flex-direction: column;
+            }
+
+            .order-item-image {
+                width: 100%;
+                height: auto;
+            }
+
+            .order-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="logo"><a href="main.html">ELM</a></div>
+        
+        <div class="header-right-group">
+            <nav class="main-nav">
+                <a href="../shop-cart/shop.html">Shop</a>
+                <a href="../collection/collection.html">Collections</a>
+            </nav>
+            <div class="user-actions">
+                <a href="account.html">Account</a> 
+                <a href="../shop-cart/cart.html" id="cart-link">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-main">
+        <section class="account-dashboard">
+            <h1 class="page-title">Order History</h1>
+            
+            <div class="account-layout-grid">
+                
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="account.html">Dashboard</a></li>
+                        <li><a href="account-orders.html" class="active">Order History</a></li>
+                        <li><a href="account-profile.html">Profile Details</a></li>
+                        <li><a href="account-addresses.html">Address Book</a></li>
+                        <li><a href="#" id="logout-button" class="logout-link">Sign Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="account-content">
+                    <h2 class="content-title">Your Orders</h2>
+                    <div id="orders-container"></div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>&copy; 2025 ELM. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ordersContainer = document.getElementById('orders-container');
+
+            function getOrderHistory() {
+                try {
+                    return JSON.parse(localStorage.getItem('orderHistory')) || [];
+                } catch (e) {
+                    console.error("Error retrieving orders:", e);
+                    return [];
+                }
+            }
+
+            const orders = getOrderHistory();
+
+            if (orders.length === 0) {
+                ordersContainer.innerHTML = '<div class="empty-orders"><p>No orders found. Start shopping!</p><a href="../shop-cart/shop.html" class="cta-button">Continue Shopping</a></div>';
+                return;
+            }
+
+            // Display orders in reverse (newest first)
+            orders.reverse().forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.classList.add('order-card');
+
+                let itemsHTML = '';
+                order.items.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="order-item">
+                            <div class="order-item-image">
+                                <img src="${item.image || ''}" alt="${item.name}">
+                            </div>
+                            <div class="order-item-details">
+                                <div class="order-item-name">${item.name}</div>
+                                <div class="order-item-meta">Qty: ${item.quantity} × $${item.price.toFixed(2)}</div>
+                            </div>
+                            <div class="order-item-price">$${itemTotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                });
+
+                const shippingInfo = order.shipping;
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div>
+                            <div class="order-id">${order.id}</div>
+                            <div class="order-date">Order Date: ${order.date}</div>
+                        </div>
+                        <span class="order-status ${order.status.toLowerCase()}">${order.status}</span>
+                    </div>
+                    <div class="order-items">${itemsHTML}</div>
+                    <div class="order-footer">
+                        <div>
+                            <div class="order-total">Total:</div>
+                            <div class="order-total-amount">$${order.total.toFixed(2)}</div>
+                        </div>
+                    </div>
+                    <div class="order-shipping-info">
+                        <strong>Shipping to:</strong><br>
+                        ${shippingInfo.name}<br>
+                        ${shippingInfo.address}<br>
+                        ${shippingInfo.city}, ${shippingInfo.zip}
+                    </div>
+                `;
+
+                ordersContainer.appendChild(orderCard);
+            });
+        });
+    </script>
+</body>
+</html>

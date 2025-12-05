@@ -1,0 +1,297 @@
+/* account.css - Consolidated and Corrected for DARK THEME */
+
+/* --- Layout and Overall Container --- */
+.account-dashboard {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.account-layout-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Fixed width sidebar, flexible content */
+    gap: 40px;
+}
+
+/* --- Titles --- */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #ffffff; /* FIXED: Ensure title is white */
+}
+
+.content-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff; /* FIXED: Ensure content title is white */
+}
+
+/* --- 1. Account Navigation (Sidebar) --- */
+.account-nav {
+    border-right: 1px solid #ffffff; /* FIXED: White separator for dark theme */
+    padding-right: 40px;
+}
+
+.account-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-nav li {
+    margin-bottom: 10px;
+}
+
+.account-nav a {
+    display: block;
+    padding: 10px 0;
+    color: #a0a0a0; /* FIXED: Muted light text */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.account-nav a:hover,
+.account-nav a.active {
+    color: #ffffff; /* FIXED: White on hover/active */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.logout-link {
+    margin-top: 20px;
+    color: #e0e0e0 !important; /* Adjusted for dark background */
+    font-weight: 700 !important;
+}
+
+/* --- 2. Account Content (Main Area) --- */
+.account-content {
+    padding-top: 5px;
+}
+
+.dashboard-greeting {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #a0a0a0; /* FIXED: Muted light text */
+    max-width: 600px;
+}
+
+.quick-links a {
+    margin-right: 15px;
+}
+
+/* ===================================== */
+/* === ORDER HISTORY & ADDRESS STYLES === */
+/* ===================================== */
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+.order-summary {
+    display: flex;
+    gap: 30px;
+    font-size: 0.95rem;
+    color: #a0a0a0;
+}
+
+.order-summary span:last-child {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.tertiary-cta {
+    background: none;
+    border: 1px solid #a0a0a0;
+    color: #a0a0a0;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tertiary-cta:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* === Profile/Form Styles === */
+.profile-form {
+    max-width: 500px;
+}
+
+.form-separator {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 30px 0;
+}
+
+.subsection-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.profile-form input {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+/* === Address Book Styles === */
+.address-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.address-card {
+    background-color: #222;
+    padding: 25px;
+    border: 1px solid #444;
+}
+
+.address-type {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.address-card p {
+    margin: 5px 0;
+    color: #a0a0a0;
+}
+
+.address-actions {
+    margin-top: 15px;
+}
+
+.address-actions a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.address-form {
+    max-width: 650px; /* Wider form for better two-column layout */
+}
+
+.form-row-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Ensure form groups within the row are full width of their grid cell */
+.form-row-group .form-group {
+    margin-bottom: 20px;
+}
+
+/* Ensure the select field also uses the dark styles */
+.address-form select {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.address-form select:focus {
+    border-color: #ffffff;
+}
+
+/* Ensure the full name input doesn't shrink when put near an action button */
+.address-form input[type="text"], 
+.address-form input[type="email"] {
+    width: 100%;
+}
+
+/* Account page responsiveness: stack sidebar and content on small screens */
+@media (max-width: 992px) {
+  .account-dashboard {
+    padding: 24px;
+  }
+
+  .account-layout-grid {
+    grid-template-columns: 1fr; /* Stack nav and content vertically */
+    gap: 20px;
+  }
+
+  .account-nav {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 12px;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+
+  .form-row-group {
+    grid-template-columns: 1fr; /* stack form fields */
+  }
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(180deg, rgba(20,20,20,0.9), rgba(16,16,16,0.9));
+    border: 1px solid #262626;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.stat-card h4 {
+    font-size: 0.95rem;
+    color: var(--color-text-accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent-gold);
+}
+
+@media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .quick-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .quick-links .cta-button {
+        width: 100%;
+    }
+}

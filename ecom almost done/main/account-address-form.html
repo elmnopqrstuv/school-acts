@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Form - ELM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../main/main.css">
+    <link rel="stylesheet" href="account.css"> 
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="logo"><a href="../main/main.html">ELM</a></div>
+        <div class="header-right-group">
+            <nav class="main-nav">
+                <a href="../shop-cart/shop.html">Shop</a>
+                <a href="../collection/collection.html">Collections</a>
+            </nav>
+            <div class="user-actions">
+                <a href="account.html">Account</a> 
+                <a href="../shop-cart/cart.html" id="cart-link">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-main">
+        <section class="account-dashboard">
+            <h1 class="page-title">My Account</h1>
+            
+            <div class="account-layout-grid">
+                
+                <nav class="account-nav">
+                    <ul>
+                        <li><a href="account.html">Dashboard</a></li>
+                        <li><a href="account-orders.html">Order History</a></li>
+                        <li><a href="account-profile.html">Profile Details</a></li>
+                        <li><a href="account-addresses.html" class="active">Address Book</a></li>
+                        <li><a href="#" id="logout-button" class="logout-link">Sign Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="account-content">
+                    <h2 class="content-title" id="form-title">Add New Address</h2>
+                    
+                    <form id="address-form" class="auth-form address-form">
+                        <input type="hidden" id="address-id" value="">
+                        
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address-line-1">Address Line 1</label>
+                            <input type="text" id="address-line-1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address-line-2">Address Line 2 (Optional)</label>
+                            <input type="text" id="address-line-2">
+                        </div>
+
+                        <div class="form-row-group">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State / Province</label>
+                                <input type="text" id="state" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row-group">
+                            <div class="form-group">
+                                <label for="zip">ZIP / Postal Code</label>
+                                <input type="text" id="zip" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" required value="United States">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address-type">Address Type</label>
+                            <select id="address-type">
+                                <option value="Shipping Address">Shipping Address</option>
+                                <option value="Billing Address">Billing Address</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="cta-button primary-cta">Add Address</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>&copy; 2025 ELM. All rights reserved.</p>
+    </footer>
+
+    <script src="../main/main.js"></script>
+    <script src="auth.js"></script> 
+    <script src="account.js"></script> 
+    <script src="address-book.js"></script> </body>
+</html>

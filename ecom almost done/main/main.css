@@ -823,9 +823,22 @@ img, picture, svg, video {
 
 @media (max-width: 480px) {
   .moving-bar-section .moving-bar-track {
-    font-size: 0.85rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    /* Old (Missing the explicit padding-left: 100% for the marquee effect) */
+.moving-bar-section p {
+    font-size: 0.9rem;
+    animation: scroll-text 15s linear infinite;
+}
+
+/* New (Explicitly forcing the necessary marquee properties on mobile) */
+.moving-bar-section p {
+    /* *** FIX: Ensure padding-left is 100% on mobile to push text off-screen *** */
+    display: inline-block;
+    padding-left: 100%; 
+    
+    font-size: 0.9rem;
+    /* Speed up the animation for a smaller screen */
+    animation: scroll-text 15s linear infinite; 
+}
   }
 }
 

@@ -692,21 +692,15 @@ h2 {
     }
     
     /* Promotional Moving Bar Mobile Adjustments */
+    .moving-bar-section {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding: 0.75rem 0;
+    }
     .moving-bar-section p {
-    font-size: 0.9rem;
-    animation: scroll-text 15s linear infinite;
-}
-
-/* New (Explicitly forcing the necessary marquee properties on mobile) */
-.moving-bar-section p {
-    /* *** FIX: Ensure padding-left is 100% on mobile to push text off-screen *** */
-    display: inline-block;
-    padding-left: 100%; 
-    
-    font-size: 0.9rem;
-    /* Speed up the animation for a smaller screen */
-    animation: scroll-text 15s linear infinite; 
-}
+        font-size: 0.9rem;
+        animation: scroll-text 15s linear infinite;
+    }
     
     /* Collection Showcase */
     .collection-showcase-section {
@@ -823,35 +817,14 @@ img, picture, svg, video {
 
 @media (max-width: 480px) {
   .moving-bar-section .moving-bar-track {
-    /* Old (Missing the explicit padding-left: 100% for the marquee effect) */
-.moving-bar-section p {
-    font-size: 0.9rem;
-    animation: scroll-text 15s linear infinite;
-}
-
-/* New (Explicitly forcing the necessary marquee properties on mobile) */
-.moving-bar-section p {
-    /* *** FIX: Ensure padding-left is 100% on mobile to push text off-screen *** */
-    display: inline-block;
-    padding-left: 100%; 
-    
-    font-size: 0.9rem;
-    /* Speed up the animation for a smaller screen */
-    animation: scroll-text 15s linear infinite; 
-}
+    animation: scroll-text 20s linear infinite;
+    font-size: 0.85rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
-/* === MOVING PROMO BAR === */
-.moving-bar-section {
-    /* Use a contrasting color to make it stand out, similar to one of your images */
-    background-color:  #0F0F0F; 
-    padding: 1rem 0;
-    margin-top: 4rem; /* Add some space above the bar */
-    margin-bottom: 4rem; /* Add some space below the bar */
-    overflow: hidden; /* Important: Hides the content outside the bar */
-    white-space: nowrap;
-}
+
 
 .moving-bar-section p {
     color: var(--color-bg-primary); /* Dark text on light background */
@@ -874,14 +847,15 @@ img, picture, svg, video {
 
 
 @media (prefers-reduced-motion: reduce) {
-  .moving-bar-section .moving-bar-track {
+  .moving-bar-section p .moving-bar-track {
     animation: scroll-text 20s linear infinite;
   }
 }
 
 
 @media (max-width: 480px) {
-  .moving-bar-section .moving-bar-track {
+  .moving-bar-section p .moving-bar-track {
+    animation: scroll-text 20s linear infinite;
     font-size: 0.85rem;
     padding-left: 40%;
   }

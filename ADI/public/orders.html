@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADI — Orders Ledger Matrix</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2 class="brand-title">ADI</h2>
+                <p class="brand-subtitle">Automotive Infrastructure</p>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Dashboard</a>
+                <a href="index.html#gallery-section">Showroom Fleet</a>
+                <a href="orders.html" class="active">Orders Ledger</a>
+                <a href="settings.html">System Settings</a>
+                <a href="#" id="system-logout-trigger" style="color: #ef4444; margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem; border-radius: 0;">Terminate Session</a>
+            </nav>
+        </aside>
+
+        <div class="main-panel">
+            <header class="dashboard-header">
+                <h1>Fulfillment Order Ledger</h1>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="metric-badge">
+                        <span>Active Transactions:</span>
+                        <strong style="color: var(--accent-gold);" id="active-orders-count">0 Pending</strong>
+                    </div>
+                    <div class="metric-badge">
+                        <span>Total Orders:</span>
+                        <strong style="color: var(--accent-gold);" id="total-orders-count">0</strong>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-body">
+                <h2>System Acquisitions Log</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Target Model Asset</th>
+                                <th>Acquisition Client</th>
+                                <th>Fulfillment Date</th>
+                                <th>Allocation Status</th>
+                                <th>Transactional Sum</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <tr>
+                                <td colspan="7" style="text-align:center; padding:2rem;">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            enforceActiveSessionGateway().then(() => {
+                initializeOrdersPage();
+            });
+        });
+
+        function initializeOrdersPage() {
+            const logoutTrigger = document.getElementById("system-logout-trigger");
+            if (logoutTrigger) {
+                logoutTrigger.addEventListener("click", async (e) => {
+                    e.preventDefault();
+                    const logoutUrl = getSecureAPIEndpointPath('logout.php');
+                    const logResponse = await fetch(logoutUrl);
+                    if (logResponse.ok) window.location.href = 'login.html';
+                });
+            }
+            fetchOrdersData();
+        }
+
+        async function fetchOrdersData() {
+            try {
+                const url = getSecureAPIEndpointPath('fetch_orders.php');
+                const response = await fetch(url);
+                const orders = await response.json();
+
+                const tableBody = document.getElementById("orders-table-body");
+                const activeOrdersEl = document.getElementById("active-orders-count");
+                const totalOrdersEl = document.getElementById("total-orders-count");
+
+                if (!orders || orders.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='7' style='text-align:center; padding:2rem;'>No orders found in the system.</td></tr>";
+                    activeOrdersEl.textContent = "0 Pending";
+                    totalOrdersEl.textContent = "0";
+                    return;
+                }
+
+                // Count processing orders
+                const processingOrders = orders.filter(o => o.status === 'Processing').length;
+                activeOrdersEl.textContent = processingOrders + " Pending";
+                totalOrdersEl.textContent = orders.length;
+
+                tableBody.innerHTML = "";
+                orders.forEach(order => {
+                    const orderDate = new Date(order.created_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+
+                    const statusColor = {
+                        'Processing': 'rgba(212,175,55,0.1)',
+                        'Dispatched': 'rgba(16,185,129,0.1)',
+                        'Hold-Back': 'rgba(239,68,68,0.1)'
+                    };
+                    const statusColorText = {
+                        'Processing': 'var(--accent-gold)',
+                        'Dispatched': '#10b981',
+                        'Hold-Back': '#ef4444'
+                    };
+
+                    const totalPrice = (order.quantity * order.product_price).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><code style="font-size:0.8rem;">#ORD-${String(order.id).padStart(4, '0')}</code></td>
+                        <td><strong>${order.product_name}</strong></td>
+                        <td>${order.customer_name}</td>
+                        <td>${orderDate}</td>
+                        <td>
+                            <select class="status-select" data-order-id="${order.id}" onchange="updateOrderStatus(${order.id}, this.value)">
+                                <option value="Processing" ${order.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                                <option value="Dispatched" ${order.status === 'Dispatched' ? 'selected' : ''}>Dispatched</option>
+                                <option value="Hold-Back" ${order.status === 'Hold-Back' ? 'selected' : ''}>Hold-Back</option>
+                            </select>
+                        </td>
+                        <td style="color: var(--accent-gold); font-weight:600;">$${totalPrice}</td>
+                        <td>
+                            <button class="order-details-btn" onclick="showOrderDetails(${order.id}, '${order.product_name}', ${order.quantity}, $${order.product_price}, '${order.customer_name}')">View</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Failed to fetch orders:", error);
+                document.getElementById("orders-table-body").innerHTML = "<tr><td colspan='7' style='text-align:center; padding:2rem; color:#ef4444;'>Error loading orders</td></tr>";
+            }
+        }
+
+        async function updateOrderStatus(orderId, newStatus) {
+            try {
+                const url = getSecureAPIEndpointPath('update_order_status.php');
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': 'IND-SECURE-2024' },
+                    body: JSON.stringify({ order_id: orderId, status: newStatus })
+                });
+                
+                if (response.ok) {
+                    console.log("Order status updated successfully");
+                    fetchOrdersData();
+                } else {
+                    const error = await response.json();
+                    alert("Error updating order: " + error.error);
+                }
+            } catch (error) {
+                console.error("Failed to update order status:", error);
+                alert("Failed to update order status");
+            }
+        }
+
+        function showOrderDetails(orderId, productName, quantity, price, customerName) {
+            const totalPrice = (quantity * price).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            
+            alert(`Order #${String(orderId).padStart(4, '0')}\n\nProduct: ${productName}\nCustomer: ${customerName}\nQuantity: ${quantity} units\nUnit Price: $${price.toLocaleString()}\nTotal: $${totalPrice}`);
+        }
+    </script>
+
+    <style>
+        .status-select {
+            background: #070b12;
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.35rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-select:hover:not(:disabled) {
+            border-color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .status-select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: #070b12;
+        }
+
+        .status-select option {
+            background: var(--bg-primary);
+            color: var(--text-light);
+            padding: 0.5rem;
+        }
+
+        .order-details-btn {
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .order-details-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+            color: #f3cf65;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADI — Automotive Infrastructure Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2 class="brand-title">ADI</h2>
+                <p class="brand-subtitle">Automotive Infrastructure</p>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Dashboard</a>
+                <a href="#gallery-section">Showroom Fleet</a>
+                <a href="orders.html">Orders Ledger</a>
+                <a href="settings.html">System Settings</a>
+                <a href="#" id="system-logout-trigger" style="color: #ef4444; margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem; border-radius: 0;">Terminate Session</a>
+            </nav>
+        </aside>
+
+        <div class="main-panel">
+            <header class="dashboard-header">
+                <h1>Infrastructure Registry Workspace</h1>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div id="admin-actions-wrapper" class="hidden">
+                        <button id="open-modal-btn" class="back-btn" style="background: var(--accent-gold); color: var(--bg-secondary); font-weight: 600; cursor: pointer;">+ Add Hypercar</button>
+                    </div>
+                    <div class="metric-badge">
+                        <span>Clearance Profile:</span>
+                        <strong id="session-clearance-profile-badge" style="text-transform: uppercase; color: var(--accent-gold);">Checking...</strong>
+                    </div>
+                    <div class="metric-badge">
+                        <span>Total Tracked:</span>
+                        <strong id="total-items-badge">0</strong>
+                    </div>
+                    <div id="warehouse-summary" style="display:flex; gap:0.8rem; align-items:center;">
+                        <div class="metric-badge"><span>Total Inventory Value:</span> <strong id="total-inventory-value">$0</strong></div>
+                        <div class="metric-badge"><span>Orders Today:</span> <strong id="total-orders-today">0</strong></div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-body">
+                <div id="empty-state-msg" class="empty-state hidden">No operational industrial records found inside live SQL data maps.</div>
+
+                <h2>Tabular Systems Ledger</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Asset ID</th>
+                                <th>Designation Name</th>
+                                <th>VIN Identifier Code</th>
+                                <th>Category Classification</th>
+                                <th>Showroom Allocation</th>
+                                <th>MSRP Retail Valuation</th>
+                                <th id="table-actions-header">Actions Control</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-table-body">
+                            </tbody>
+                    </table>
+                </div>
+
+                <h2 id="gallery-section" style="margin-top: 4rem;">Showroom Fleet Grid</h2>
+                <div id="gallery-grid" class="product-gallery">
+                    </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h3>Provision New Showroom Asset</h3>
+                <span id="close-modal-btn" class="close-icon">&times;</span>
+            </header>
+            <form id="add-product-form">
+                <div class="form-group">
+                    <label>Vehicle Model Designation Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Bugatti Chiron Super Sport">
+                </div>
+                <div class="form-group">
+                    <label>Unique VIN Allocation Code String</label>
+                    <input type="text" name="sku" required placeholder="e.g. VINBUG16CHIRON4X">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Structural Matrix Classification</label>
+                        <select name="category_id" required>
+                            <option value="1">Hypercar</option>
+                            <option value="2">Track Spec</option>
+                            <option value="3">Supercar</option>
+                            <option value="4">Sports Car</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Showroom Inventory Count</label>
+                        <input type="number" name="stock" min="0" value="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>MSRP Retail Valuation (USD Price)</label>
+                    <input type="number" name="price" step="0.01" required placeholder="3825000.00">
+                </div>
+                <footer class="modal-footer">
+                    <button type="button" id="cancel-modal-btn" class="form-cancel-btn">Abort Entry</button>
+                    <button type="submit" class="form-submit-btn">Persist to SQL Base</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 420px; border-top: 4px solid #ef4444; text-align: center;">
+            <h3 style="font-family:'Cinzel', serif; color:#ef4444; margin-bottom:1rem; font-size:1.3rem;">Destructive Purge Confirmation</h3>
+            <p style="color:var(--text-light); font-size:0.9rem; margin-bottom:2rem; line-height:1.5;">Are you completely certain you want to purge this hypercar profile record from the active warehouse infrastructure database permanently?</p>
+            <div style="display:flex; justify-content:center; gap:1.5rem;">
+                <button id="confirm-cancel-btn" class="form-cancel-btn" style="min-width:100px;">Cancel</button>
+                <button id="confirm-delete-btn" class="form-submit-btn" style="background:#ef4444; color:#ffffff; min-width:120px;">Purge Forever</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

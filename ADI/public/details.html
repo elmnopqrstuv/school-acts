@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADI — Vehicle Asset Specifications</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2 class="brand-title">ADI</h2>
+                <p class="brand-subtitle">Automotive Infrastructure</p>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Dashboard</a>
+                <a href="index.html#gallery-section">Showroom Fleet</a>
+                <a href="orders.html">Orders Ledger</a>
+                <a href="settings.html">System Settings</a>
+            </nav>
+        </aside>
+
+        <div class="main-panel">
+            <header class="dashboard-header">
+                <h1 id="vehicle-header-title">Loading Vehicle Profile...</h1>
+                <a href="index.html" class="back-btn">← Back to Fleet</a>
+            </header>
+
+            <main class="content-body">
+                <div id="details-error-msg" class="empty-state hidden">
+                    No industrial records found.
+                </div>
+
+                <div id="spec-card-container" class="detail-card hidden">
+                    <div style="display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: center;">
+                        <div style="flex: 1; min-width: 280px; max-width: 450px;">
+                            <img id="car-detail-image" src="" alt="Vehicle Showcase Image" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.3); object-fit: cover;">
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 280px;">
+                            <h2 id="car-detail-name" style="margin-top: 0;">Model Designation</h2>
+                            <p class="detail-sku-label">VIN Identifier: <span id="car-detail-sku">--</span></p>
+                            <p class="detail-sku-label" style="margin-top: 0.5rem;">System Core Asset ID: <span id="car-detail-id">--</span></p>
+                        </div>
+                    </div>
+                    
+                    <hr class="luxury-divider">
+                    
+                    <div class="specs-grid" style="margin-bottom: 2.5rem;">
+                        <div class="spec-metric-box">
+                            <label>Manufacturer Suggested Retail Price</label>
+                            <span id="car-detail-price" class="gold-text">$0.00</span>
+                        </div>
+                        <div class="spec-metric-box">
+                            <label>Current Showroom Availability</label>
+                            <span id="car-detail-stock">0 units</span>
+                        </div>
+                        <div class="spec-metric-box">
+                            <label>Logistics Routing Status</label>
+                            <span id="car-detail-status" class="status-indicator">Verifying Allocation</span>
+                        </div>
+                    </div>
+
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem; margin-bottom: 1.25rem;">Mechanical Specifications Profile</h3>
+                    
+                    <div class="specs-grid">
+                        <div class="spec-metric-box">
+                            <label>Propulsion Plant / Engine Architecture</label>
+                            <span id="car-spec-engine" style="color: #e2e8f0; font-size: 1.1rem; font-weight: 500;">--</span>
+                        </div>
+                        <div class="spec-metric-box">
+                            <label>Net System Output Power</label>
+                            <span id="car-spec-power" style="color: #e2e8f0; font-size: 1.1rem; font-weight: 500;">--</span>
+                        </div>
+                        <div class="spec-metric-box">
+                            <label>Transmission Gearbox Assembly</label>
+                            <span id="car-spec-transmission" style="color: #e2e8f0; font-size: 1.1rem; font-weight: 500;">--</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
